@@ -27,3 +27,13 @@ imputed_df = imputer.transform(mod_df.values)
 
 #drrop rows by range
 health_df = health_df.drop(health_df.index[92064:100766])
+
+#ALternative of label-encoder, python mapping
+df = pd.DataFrame({col: df[col].astype('category').cat.codes for col in df}, index=df.index)
+{col: {n: cat for n, cat in enumerate(df[col].astype('category').cat.categories)}
+     for col in df}
+
+
+#reshape
+df = pd.DataFrame([[1,2,3],[4,5,6]])
+print(pd.DataFrame(df.values.reshape(1,-1)))

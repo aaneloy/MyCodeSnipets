@@ -37,3 +37,10 @@ df = pd.DataFrame({col: df[col].astype('category').cat.codes for col in df}, ind
 #reshape
 df = pd.DataFrame([[1,2,3],[4,5,6]])
 print(pd.DataFrame(df.values.reshape(1,-1)))
+
+#remove outliers
+def reject_outliers(df):
+ u = np.mean(df["Yield"])
+ s = np.std(df["Yield"])
+ data_filtered = df[(df["Yield"]>(u-2*s)) & (df["Yield"]<(u+2*s))]
+ return data_filtered
